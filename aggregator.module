@@ -22,6 +22,33 @@ function aggregator_config_info() {
 }
 
 /**
+ * Implements hook_autoload_info().
+ */
+function aggregator_autoload_info() {
+  return array(
+    'views_handler_argument_aggregator_category_cid' => 'views/views_handler_argument_aggregator_category_cid.inc',
+    'views_handler_argument_aggregator_fid' => 'views/views_handler_argument_aggregator_fid.inc',
+    'views_handler_argument_aggregator_iid' => 'views/views_handler_argument_aggregator_iid.inc',
+    'views_handler_field_aggregator_category' => 'views/views_handler_field_aggregator_category.inc',
+    'views_handler_field_aggregator_title_link' => 'views/views_handler_field_aggregator_title_link.inc',
+    'views_handler_field_aggregator_xss' => 'views/views_handler_field_aggregator_xss.inc',
+    'views_handler_filter_aggregator_category_cid' => 'views/views_handler_filter_aggregator_category_cid.inc',
+    'views_plugin_row_aggregator_rss' => 'views/views_plugin_row_aggregator_rss.inc',
+    // => 'views/views_handler_field_aggregator_item_description.inc',
+  );
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function aggregator_views_api() {
+  return array(
+    'api' => 3,
+    'path' => backdrop_get_path('module', 'aggregator'),
+  );
+}
+
+/**
  * Implements hook_theme().
  */
 function aggregator_theme() {
