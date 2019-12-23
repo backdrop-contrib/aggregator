@@ -216,5 +216,31 @@ function hook_aggregator_remove($feed) {
 }
 
 /**
+ * Alter a single aggregator ite before saving.
+ *
+ * @param $item
+ *   The common format for a single feed item is an associative array containing:
+ *     - title: The human-readable title of the feed item.
+ *     - description: The full body text of the item or a summary.
+ *     - timestamp: The UNIX timestamp when the feed item was last published.
+ *     - author: The author of the feed item.
+ *     - guid: The global unique identifier (GUID) string that uniquely
+ *       identifies the item. If not available, the link is used to identify
+ *       the item.
+ *     - link: A full URL to the individual feed item.
+ *
+ * @ingroup aggregator
+ */
+function hook_aggregator_aggregator_process_alter(&$item) {
+  // Split the title by comma, and update the timestamp with the provided date.
+  $title_parts = explode(',', $item['title']);
+  $date = trim(array_pop($title_parts));
+  if ($date) {
+    $timestamp = strtotime($date);
+    $item['timestamp'] = $timestamp;
+  }
+}
+
+/**
  * @} End of "addtogroup hooks".
  */
