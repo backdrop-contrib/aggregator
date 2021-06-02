@@ -20,6 +20,25 @@ License
 This project is GPL v2 software. See the LICENSE.txt file in this directory for
 complete text.
 
+SSL Verification
+----------------
+
+If a feed's URL fails SSL verification, a setting is available to disable it.
+
+For example:
+
+```
+The feed from ___ seems to be broken, due to "0 Error opening socket ssl://___:443".
+```
+
+To disable SSL verification, set it through [Drush](https://github.com/backdrop-contrib/backdrop-drush-extension):
+
+```
+drush config-set aggregator.settings aggregator_ssl_verification 0
+```
+
+There is currently no UI for this setting.
+
 Current Maintainers
 -------------------
 
