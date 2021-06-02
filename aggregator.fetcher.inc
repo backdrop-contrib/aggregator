@@ -30,8 +30,21 @@ function aggregator_aggregator_fetch($feed) {
     $headers['If-Modified-Since'] = gmdate(DATE_RFC7231, $feed->modified);
   }
 
+  // Set default context to enable/disable SSL verification.
+  $validate = config_get('aggregator.settings', 'aggregator_ssl_verification');
+  $context = stream_context_create(array(
+    'ssl' => array(
+      'verify_peer' => $validate,
+      'verify_peer_name' => $validate,
+    ),
+  ));
+
   // Request feed.
-  $result = backdrop_http_request($feed->url, array('headers' => $headers));
+  $options = array(
+    'headers' => $headers,
+    'context' => $context,
+  );
+  $result = backdrop_http_request($feed->url, $options);
 
   // Process HTTP response code.
   switch ($result->code) {

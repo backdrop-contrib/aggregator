@@ -333,3 +333,10 @@ function aggregator_update_last_removed() {
 /**
  * @} End of "addtogroup updates-drupal-to-backdrop"
  */
+
+/**
+ * Set default value for new aggregator_ssl_verification setting.
+ */
+function aggregator_update_1001() {
+  config_set('aggregator.settings', 'aggregator_ssl_verification', TRUE);
+}

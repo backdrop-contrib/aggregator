@@ -1,5 +1,6 @@
 {
     "_config_name": "aggregator.settings",
+    "_module": "aggregator",
     "allowed_html_tags": "<a> <b> <br> <dd> <dl> <dt> <em> <i> <li> <ol> <p> <strong> <u> <ul>",
     "fetcher": "aggregator",
     "parser": "aggregator",
@@ -11,5 +12,6 @@
     "feed_default_items": 10,
     "feed_item_length": "fulltext",
     "teaser_length": 600,
-    "clear": 9676800
+    "clear": 9676800,
+    "aggregator_ssl_verification": true
 }
