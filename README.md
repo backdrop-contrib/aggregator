@@ -1,8 +1,8 @@
 Aggregator
 ======================
 
-Aggregate RSS feeds and publish them in a River of News format or in
-a block.
+Aggregate RSS feeds and publish them in a River of News format. To add
+blocks, use the Views module, for which a plugin is provided.
 
 Installation
 ------------
