@@ -37,7 +37,8 @@ To disable SSL verification, set it through [Drush](https://github.com/backdrop-
 drush config-set aggregator.settings aggregator_ssl_verification 0
 ```
 
-There is currently no UI for this setting.
+There is currently no UI for this setting. This is a global setting, meaning
+it applies to all feeds, so it should be turned off with forethought.
 
 Current Maintainers
 -------------------
