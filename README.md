@@ -1,7 +1,7 @@
 Aggregator
 ======================
 
-Aggregate RSS feeds and publish them in a River of News format or in 
+Aggregate RSS feeds and publish them in a River of News format or in
 a block.
 
 Installation
@@ -10,8 +10,8 @@ Installation
 - Install this module using the official Backdrop CMS instructions at
   https://backdropcms.org/guide/modules
 
-- Visit the configuration page under Administration > Configuration > 
-  Web services > Feed aggregator (admin/config/services/aggregator) to 
+- Visit the configuration page under Administration > Configuration >
+  Web services > Feed aggregator (admin/config/services/aggregator) to
   add feeds and categories.
 
 License
