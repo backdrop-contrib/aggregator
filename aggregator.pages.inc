@@ -471,6 +471,7 @@ function theme_aggregator_page_rss($variables) {
   $output .= "</rss>\n";
 
   print $output;
+  backdrop_exit();
 }
 
 /**
@@ -524,6 +525,7 @@ function theme_aggregator_page_opml($variables) {
   $output .= "</opml>\n";
 
   print $output;
+  backdrop_exit();
 }
 
 /**
