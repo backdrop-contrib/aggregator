@@ -289,6 +289,10 @@ EOF;
     return $GLOBALS['base_url'] . '/' . backdrop_get_path('module', 'aggregator') . '/tests/aggregator_test_atom.xml';
   }
 
+  function getNoTitleSample() {
+    return $GLOBALS['base_url'] . '/' . drupal_get_path('module', 'aggregator') . '/tests/aggregator_test_title_from_desc.xml';
+  }
+
   function getHtmlEntitiesSample() {
     return $GLOBALS['base_url'] . '/' . backdrop_get_path('module', 'aggregator') . '/tests/aggregator_test_title_entities.xml';
   }
@@ -1036,5 +1040,16 @@ class FeedParserTestCase extends AggregatorTestCase {
     $this->drupalGet('aggregator/sources/' . $feed->fid);
     $this->assertResponse(200, format_string('Feed %name exists.', array('%name' => $feed->title)));
     $this->assertRaw("Quote&quot; Amp&amp;");
+  }
+
+  /**
+   * Tests a feed with no title; the description should be used to generate one.
+   */
+  function testNoTitleSample() {
+    $feed = $this->createFeed($this->getNoTitleSample());
+    aggregator_refresh($feed);
+    $this->drupalGet('aggregator/sources/' . $feed->fid);
+    $this->assertResponse(200, format_string('Feed %name exists.', array('%name' => $feed->title)));
+    $this->assertRaw("This description should be used to generate a title. This description should be used to generate a title. This description should be used to generate a title. This description should be used to generate a title. This description should be used to...");
   }
 }
