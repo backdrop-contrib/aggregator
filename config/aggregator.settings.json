@@ -13,5 +13,6 @@
     "feed_item_length": "fulltext",
     "teaser_length": 600,
     "clear": 9676800,
-    "aggregator_ssl_verification": true
+    "aggregator_ssl_verification": true,
+    "date_format": "D, m/d/Y - H:i"
 }
