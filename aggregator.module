@@ -460,12 +460,8 @@ function aggregator_save_category($edit) {
         ->condition('cid', $edit['cid'])
         ->execute();
       // Make sure there is no active block for this category.
-      if (module_exists('block')) {
-        db_delete('block')
-          ->condition('module', 'aggregator')
-          ->condition('delta', 'category-' . $edit['cid'])
-          ->execute();
-      }
+      _aggregator_remove_block_from_layouts('category-' . $edit['cid']);
+
       $edit['title'] = '';
       $op = 'delete';
     }
@@ -524,12 +520,7 @@ function aggregator_save_feed($edit) {
       ->condition('fid', $edit['fid'])
       ->execute();
     // Make sure there is no active block for this feed.
-    if (module_exists('block')) {
-      db_delete('block')
-        ->condition('module', 'aggregator')
-        ->condition('delta', 'feed-' . $edit['fid'])
-        ->execute();
-    }
+    _aggregator_remove_block_from_layouts('feed-' . $edit['fid']);
   }
   elseif (!empty($edit['title'])) {
     $edit['fid'] = db_insert('aggregator_feed')
@@ -785,4 +776,25 @@ function aggregator_sanitize_configuration() {
  */
 function _aggregator_items($count) {
   return format_plural($count, '1 item', '@count items');
+}
+
+/**
+ * Remove block from any layout that uses it.
+ *
+ * @param string $block_delta
+ *   Block delta for the aggregator block to remove.
+ */
+function _aggregator_remove_block_from_layouts($block_delta) {
+  module_load_include('inc', 'layout', 'layout.admin');
+  if (layout_get_block_usage('aggregator', $block_delta)) {
+    $layouts = layout_load_all();
+    foreach ($layouts as $layout) {
+      foreach ($layout->content as $uuid => $block) {
+        if ($block->module == 'aggregator' && $block->delta == $block_delta) {
+          $layout->removeBlock($uuid);
+          $layout->save();
+        }
+      }
+    }
+  }
 }
