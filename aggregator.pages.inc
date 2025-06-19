@@ -333,7 +333,8 @@ function template_preprocess_aggregator_item(&$variables) {
     $variables['source_date'] = t('%ago ago', array('%ago' => format_interval(REQUEST_TIME - $item->timestamp)));
   }
   else {
-    $variables['source_date'] = format_date($item->timestamp, 'custom', variable_get('date_format_medium', 'D, m/d/Y - H:i'));
+    $format = config_get('aggregator.settings', 'date_format');
+    $variables['source_date'] = format_date($item->timestamp, 'custom', $format);
   }
 
   $variables['categories'] = array();

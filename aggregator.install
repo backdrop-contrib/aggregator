@@ -340,3 +340,10 @@ function aggregator_update_last_removed() {
 function aggregator_update_1001() {
   config_set('aggregator.settings', 'aggregator_ssl_verification', TRUE);
 }
+
+/**
+ * Set default value for date_format setting.
+ */
+function aggregator_update_1002() {
+  config_set('aggregator.settings', 'date_format', 'D, m/d/Y - H:i');
+}
