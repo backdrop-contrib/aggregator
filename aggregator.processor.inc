@@ -206,7 +206,7 @@ function aggregator_save_item($edit) {
  */
 function aggregator_expire($feed) {
   $config = config('aggregator.settings');
-  $aggregator_clear = $config->get('aggregator_clear');
+  $aggregator_clear = $config->get('clear');
 
   if ($aggregator_clear != AGGREGATOR_CLEAR_NEVER) {
     // Remove all items that are older than flush item timer.
