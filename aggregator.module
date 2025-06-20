@@ -351,6 +351,11 @@ function aggregator_cron_queue_info() {
  */
 function aggregator_block_info() {
   $blocks = array();
+  // Prevent fatal error when uninstalling this module - the tables are already
+  // gone at this point.
+  if (!db_table_exists('aggregator_category')) {
+    return $blocks;
+  }
   $result = db_query('SELECT cid, title FROM {aggregator_category} ORDER BY title');
   foreach ($result as $category) {
     $blocks['category-' . $category->cid]['info'] = t('!title category latest items', array('!title' => $category->title));
