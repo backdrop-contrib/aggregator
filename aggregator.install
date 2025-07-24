@@ -9,8 +9,7 @@
  * Implements hook_uninstall().
  */
 function aggregator_uninstall() {
-  $config = config_get('aggregator.settings');
-  $config->delete();
+  config('aggregator.settings')->delete();
 }
 
 /**
