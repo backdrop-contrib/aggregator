@@ -9,14 +9,7 @@
  * Implements hook_uninstall().
  */
 function aggregator_uninstall() {
-  variable_del('aggregator_allowed_html_tags');
-  variable_del('aggregator_summary_items');
-  variable_del('aggregator_clear');
-  variable_del('aggregator_category_selector');
-  variable_del('aggregator_fetcher');
-  variable_del('aggregator_parser');
-  variable_del('aggregator_processors');
-  variable_del('aggregator_teaser_length');
+  config('aggregator.settings')->delete();
 }
 
 /**

@@ -762,9 +762,11 @@ function aggregator_sanitize_configuration() {
     }
   }
   if ($reset) {
-    variable_del('aggregator_fetcher');
-    variable_del('aggregator_parser');
-    variable_del('aggregator_processors');
+    $config = config_get('aggregator.settings');
+    $config->clear('fetcher');
+    $config->clear('parser');
+    $config->clear('processors');
+    $config->save();
     return TRUE;
   }
   return FALSE;
